@@ -14,8 +14,7 @@ class ProductoController
     }
     public function index()
     {
-        $stmt = $this->producto->getAll();
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $productos = $this->producto->getAll();
         ob_start();
         require BASE_PATH . '\views\productos\index.php';
         $content = ob_get_clean();
@@ -27,10 +26,8 @@ class ProductoController
     {
         $mensaje = '';
         $error = '';
+        $categorias = $this->producto->getCategorias();
 
-        $stmt = $this->producto->getCategorias();
-        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->producto->categoria = $_POST['categoria'];
             $this->producto->descripcion = $_POST['descripcion'];

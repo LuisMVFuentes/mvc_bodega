@@ -22,7 +22,7 @@
         <?php endforeach; ?>
         <option value="nueva">Nueva Categoría</option>
     </select><br><br>
-<!--     <input name="nuevo" type="text" value="<?= htmlspecialchars($categoria ?? '') ?>"><br><br> -->
+    <!--     <input name="nuevo" type="text" value="<?= htmlspecialchars($categoria ?? '') ?>"><br><br> -->
     <label>Descripción:</label><br>
     <textarea name="descripcion" required><?= htmlspecialchars($descripcion ?? '') ?></textarea><br><br>
 

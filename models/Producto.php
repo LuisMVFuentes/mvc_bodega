@@ -1,9 +1,9 @@
 <?php
 // models/Producto.php
+require_once 'BaseModel.php';
 
-class Producto
+class Producto extends BaseModel
 {
-    private $conn;
     private $tabla = "productos";
 
     public $id;
@@ -12,55 +12,29 @@ class Producto
     public $precio;
     public $cantidad_existente;
 
-    public function __construct($db)
-    {
-        $this->conn = $db;
-    }
 
     // Listar todos los productos
     public function getAll()
     {
         $query = "SELECT * FROM " . $this->tabla . " ORDER BY categoria, descripcion ASC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt;
+        return $this->fetchAllQuery($query);
     }
 
     // Listar todos categorias
     public function getCategorias()
     {
-        $query = "SELECT categoria FROM " . $this->tabla . " ORDER BY id ASC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt;
+        $query = "SELECT DISTINCT categoria FROM " . $this->tabla . " ORDER BY id ASC";
+        return $this->fetchAllQuery($query);
     }
 
     // Crear nuevo producto
     public function create()
     {
-        $query = "INSERT INTO " . $this->tabla . "
-            SET categoria = :categoria,
-                descripcion = :descripcion,
-                precio = :precio,
-                cantidad_existente = :cantidad_existente";
-
-        $stmt = $this->conn->prepare($query);
-
-        // Sanitizar
-        $this->categoria = htmlspecialchars(strip_tags($this->categoria));
-        $this->descripcion = htmlspecialchars(strip_tags($this->descripcion));
-        $this->precio = htmlspecialchars(strip_tags($this->precio));
-        $this->cantidad_existente = htmlspecialchars(strip_tags($this->cantidad_existente));
-
-        // Bind
-        $stmt->bindParam(':categoria', $this->categoria);
-        $stmt->bindParam(':descripcion', $this->descripcion);
-        $stmt->bindParam(':precio', $this->precio);
-        $stmt->bindParam(':cantidad_existente', $this->cantidad_existente);
-
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
+        return $this->insertQuery($this->tabla, [
+            'categoria' => $this->categoria,
+            'descripcion' => $this->descripcion,
+            'precio' => $this->precio,
+            'cantidad_existente' => $this->cantidad_existente
+        ]);
     }
 }

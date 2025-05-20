@@ -14,8 +14,7 @@ class IngresoController
     }
     public function index()
     {
-        $stmt = $this->ingreso->getAll();
-        $ingresos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $ingresos = $this->ingreso->getAll();
         ob_start();
         include BASE_PATH . '/views/ingresos/index.php';
         $content = ob_get_clean();
@@ -24,7 +23,7 @@ class IngresoController
     }
     public function create()
     {
-        $productos = $this->producto->getAll()->fetchAll(PDO::FETCH_ASSOC);
+        $productos = $this->producto->getAll();
         $mensaje = '';
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

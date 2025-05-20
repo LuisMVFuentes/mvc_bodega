@@ -12,8 +12,7 @@ class ClienteController
     }
     public function index()
     {
-        $stmt = $this->cliente->getAll();
-        $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $clientes = $this->cliente->getAll();
         ob_start();
         require BASE_PATH . '\views\clientes\index.php';
         $content = ob_get_clean();
