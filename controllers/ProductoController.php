@@ -4,6 +4,8 @@ class ProductoController
 {
     private $db;
     private $producto;
+    private $categorias;
+
     public function __construct()
     {
         $database = new Database();
@@ -20,10 +22,15 @@ class ProductoController
         $title = "Lista de Productos";
         require BASE_PATH . '\views\layout.php';
     }
+
     public function create()
     {
         $mensaje = '';
         $error = '';
+
+        $stmt = $this->producto->getCategorias();
+        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->producto->categoria = $_POST['categoria'];
             $this->producto->descripcion = $_POST['descripcion'];

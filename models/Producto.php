@@ -20,7 +20,16 @@ class Producto
     // Listar todos los productos
     public function getAll()
     {
-        $query = "SELECT * FROM " . $this->tabla . " ORDER BY id ASC";
+        $query = "SELECT * FROM " . $this->tabla . " ORDER BY categoria, descripcion ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    // Listar todos categorias
+    public function getCategorias()
+    {
+        $query = "SELECT categoria FROM " . $this->tabla . " ORDER BY id ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

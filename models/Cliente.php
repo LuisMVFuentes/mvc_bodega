@@ -20,7 +20,7 @@ class Cliente
     // Listar todos los clientes
     public function getAll()
     {
-        $query = "SELECT * FROM " . $this->tabla . " ORDER BY id ASC";
+        $query = "SELECT * FROM " . $this->tabla . " ORDER BY nombre ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

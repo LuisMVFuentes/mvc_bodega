@@ -13,7 +13,8 @@
         <th>Precio</th>
         <th>Cantidad</th>
     </tr>
-    <?php foreach ($productos as $prod): ?>
+    <?php 
+    foreach ($productos as $prod): ?>
         <tr>
             <td><?= htmlspecialchars($prod['id']) ?></td>
             <td><?= htmlspecialchars($prod['categoria']) ?></td>

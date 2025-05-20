@@ -16,8 +16,13 @@
 
 <form method="POST" action="?controller=producto&action=create">
     <label>Categoría:</label><br>
-    <input type="text" name="categoria" value="<?= htmlspecialchars($categoria ?? '') ?>" required><br><br>
-
+    <select name="categoria">
+        <?php foreach ($categorias as $cat): ?>
+            <option value="<?= htmlspecialchars($cat['categoria']) ?>"> <?= htmlspecialchars($cat['categoria']) ?></option>
+        <?php endforeach; ?>
+        <option value="nueva">Nueva Categoría</option>
+    </select><br><br>
+<!--     <input name="nuevo" type="text" value="<?= htmlspecialchars($categoria ?? '') ?>"><br><br> -->
     <label>Descripción:</label><br>
     <textarea name="descripcion" required><?= htmlspecialchars($descripcion ?? '') ?></textarea><br><br>
 
