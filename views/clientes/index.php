@@ -11,6 +11,7 @@
         <th>Nombre</th>
         <th>Telefono</th>
         <th>Direccion</th>
+        <th>Accion</th>
     </tr>
     <?php foreach ($clientes as $cli): ?>
         <tr>
@@ -18,6 +19,7 @@
             <td><?= htmlspecialchars($cli['nombre']) ?></td>
             <td><?= htmlspecialchars($cli['telefono']) ?></td>
             <td><?= htmlspecialchars($cli['direccion']) ?></td>
+            <td><a href="?controller=cliente&action=edit&id=<?= $cli['id'] ?>">Editar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

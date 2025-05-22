@@ -30,7 +30,7 @@ class Producto extends BaseModel
     // Crear nuevo producto
     public function create()
     {
-        return $this->insertQuery($this->tabla, [
+        return $this->insert($this->tabla, [
             'categoria' => $this->categoria,
             'descripcion' => $this->descripcion,
             'precio' => $this->precio,

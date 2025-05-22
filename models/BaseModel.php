@@ -1,9 +1,30 @@
 <?php class BaseModel
 {
-    protected $db;
+    public $db;
     public function __construct($db)
     {
         $this->db = $db;
+    }
+
+    public function begin(): void
+    {
+        $this->db->beginTransaction();
+    }
+
+    public function commit(): void
+    {
+        $this->db->commit();
+    }
+
+    public function rollback(): void
+    {
+        $this->db->rollBack();
+    }
+
+    public function update(string $sql, array $params): bool
+    {
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute($params);
     }
 
     /** * Ejecuta una consulta SQL y devuelve todos los resultados como array asociativo. */
@@ -14,7 +35,7 @@
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertQuery(string $table, array $data): bool
+    public function insert(string $table, array $data): bool
     {
         $columns = implode(', ', array_keys($data));
         $placeholders = ':' . implode(', :', array_keys($data));
@@ -23,13 +44,15 @@
         return $stmt->execute($data);
     }
 
-
-    public function updateQuery(string $table, array $data): bool
+    public function updateQuery(string $table, array $data, string $id): bool
     {
-        $columns = implode(', ', array_keys($data));
-        $placeholders = ':' . implode(', :', array_keys($data));
-        $sql = "UPDATE {$table} SET ({$columns}) VALUES ({$placeholders})";
+        $setPart = implode(', ', array_map(fn($col) => "$col = :$col", array_keys($data)));
+        $sql = "UPDATE {$table} SET {$setPart} WHERE id = :id";
         $stmt = $this->db->prepare($sql);
+
+        // Añadimos el ID a los datos
+        $data['id'] = $id;
+
         return $stmt->execute($data);
     }
 }

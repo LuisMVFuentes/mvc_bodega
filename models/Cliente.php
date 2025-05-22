@@ -20,12 +20,30 @@ class Cliente extends BaseModel
         return $this->fetchAllQuery($query);
     }
 
+    public function getCliente(string $idCliente)
+    {
+        $query = "SELECT * FROM " . $this->tabla . " WHERE id = " . $idCliente;
+        return $this->fetchAllQuery($query)[0];
+    }
+
     public function create(): bool
     {
-        return $this->insertQuery($this->tabla, [
+        return $this->insert($this->tabla, [
             'nombre' => $this->nombre,
             'telefono' => $this->telefono,
             'direccion' => $this->direccion
         ]);
+    }
+
+    public function edit(string $idCliente): bool
+    {
+        return $this->updateQuery(
+            $this->tabla,
+            [
+                'nombre' => $this->nombre,
+                'telefono' => $this->telefono,
+                'direccion' => $this->direccion
+            ],
+            $idCliente);
     }
 }

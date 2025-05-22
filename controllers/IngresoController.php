@@ -36,6 +36,9 @@ class IngresoController
                 $error = "Error al registrar ingreso.";
             }
         }
+
+        
+
         ob_start();
         include BASE_PATH . '/views/ingresos/create.php';
         $content = ob_get_clean();
