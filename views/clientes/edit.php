@@ -2,9 +2,11 @@
 
 
 <?php if (!empty($mensaje)) : ?>
-    <div style="color: green; margin-bottom: 10px;">
-        <?= htmlspecialchars($mensaje) ?>
-    </div>
+        <p style="color:red;"><?= htmlspecialchars($mensaje) ?></p>
+<?php endif; ?>
+
+<?php if (!empty($error)): ?>
+    <p style="color:red;"><?= htmlspecialchars($error) ?></p>
 <?php endif; ?>
 
 <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>?controller=cliente&action=edit" method="POST">

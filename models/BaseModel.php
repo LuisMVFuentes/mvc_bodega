@@ -55,4 +55,11 @@
 
         return $stmt->execute($data);
     }
+
+    public function deleteById(string $table, string $id): bool
+    {
+        $sql = "DELETE FROM {$table} WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([':id' => $id]);
+    }
 }

@@ -20,6 +20,12 @@ class Producto extends BaseModel
         return $this->fetchAllQuery($query);
     }
 
+    public function getProducto(string $idProducto)
+    {
+        $query = "SELECT * FROM " . $this->tabla . " WHERE id = " . $idProducto;
+        return $this->fetchAllQuery($query)[0];
+    }
+
     // Listar todos categorias
     public function getCategorias()
     {
@@ -36,5 +42,26 @@ class Producto extends BaseModel
             'precio' => $this->precio,
             'cantidad_existente' => $this->cantidad_existente
         ]);
+    }
+
+    //Editar Producto
+
+    public function edit(string $idProducto): bool
+    {
+        return $this->updateQuery(
+            $this->tabla,
+            [
+                'categoria' => $this->categoria,
+                'descripcion' => $this->descripcion,
+                'precio' => $this->precio,
+                'cantidad_existente' => $this->cantidad_existente
+            ],
+            $idProducto
+        );
+    }
+
+    public function delete(string $id): bool
+    {
+        return $this->deleteById($this->tabla, $id);
     }
 }

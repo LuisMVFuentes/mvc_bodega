@@ -81,4 +81,23 @@ class ClienteController
         $title = "Editar Cliente";
         require BASE_PATH . '/views/layout.php';
     }
+
+    public function delete()
+    {
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            // Puedes redirigir o mostrar un error
+            die("ID no proporcionado.");
+        }
+
+        if ($this->cliente->delete($id)) {
+            $mensaje = "Cliente eliminado correctamente.";
+        } else {
+            $mensaje = "No se pudo eliminar el cliente.";
+        }
+
+        // Redirigir o recargar vista con mensaje
+        header("Location: ?controller=cliente&action=index&mensaje=" . urlencode($mensaje));
+        exit;
+    }
 }

@@ -44,6 +44,12 @@ class Cliente extends BaseModel
                 'telefono' => $this->telefono,
                 'direccion' => $this->direccion
             ],
-            $idCliente);
+            $idCliente
+        );
+    }
+
+    public function delete(string $id): bool
+    {
+        return $this->deleteById($this->tabla, $id);
     }
 }
