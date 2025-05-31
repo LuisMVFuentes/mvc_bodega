@@ -1,4 +1,4 @@
-<table>
+<table cellpadding='5' cellspacing='0'>
     <tr>
         <td colspan="4">
             <hr>
@@ -11,12 +11,15 @@
         <th colspan="4">CALLE MIGUEL GRAU #100 - PIMENTEL</th>
     </tr>
     <tr>
-        <td colspan="2">No <?= htmlspecialchars($boleta['numero']) ?></td>
-        <td colspan="2">Hora: <?= htmlspecialchars($boleta['hora']) ?></td>
+        <td colspan="2"><b>N° <?= htmlspecialchars($boleta['numero']) ?></b></td>
+        <?php
+        [$fecha, $hora] = explode(' ', $boleta['fecha']);;
+        ?>
+        <td colspan="2"><b>Vendedor: <?= htmlspecialchars($boleta['vendedor']) ?></b></td>
     </tr>
     <tr>
-        <td colspan="2">Fecha: <?= htmlspecialchars($boleta['fecha']) ?></td>
-        <td colspan="2">Vendedor: <?= htmlspecialchars($boleta['vendedor']) ?></td>
+        <td colspan="2">Fecha: <?= htmlspecialchars($fecha) ?></td>
+        <td colspan="2">Hora: <?= htmlspecialchars($hora) ?></td>
     </tr>
     <tr>
         <td colspan="4">
@@ -32,7 +35,7 @@
     <?php if (!empty($detalle)): ?> <?php foreach ($detalle as $item): ?>
             <tr>
                 <td><?= htmlspecialchars($item['producto']) ?></td>
-                <td>S/ <?= number_format($item['precio_unitario'], 2) ?></td>
+                <td>S/ <?= number_format($item['precio'], 2) ?></td>
                 <td><?= htmlspecialchars($item['cantidad']) ?></td>
                 <td>S/ <?= number_format($item['importe'], 2) ?></td>
             </tr>
@@ -48,16 +51,16 @@
         </td>
     </tr>
     <tr>
-        <td colspan="3">Total:</td>
-        <td> S/ <?= number_format($boleta['total'], 2) ?></td>
+        <th colspan="3">Total:</th>
+        <th> S/ <?= number_format($boleta['total'], 2) ?></th>
     </tr>
     <tr>
-        <td colspan="3">M. Pago:</td>
-        <td> <?= htmlspecialchars($boleta['tipo_pago']) ?></td>
+        <th colspan="3">M. Pago:</th>
+        <th> <?= htmlspecialchars($boleta['tipo_pago']) ?></th>
     </tr>
     <tr>
-        <td colspan="3">Cliente:</td>
-        <td> <?= htmlspecialchars($boleta['cliente_id'] ?? '--') ?></td>
+        <th colspan="3">Cliente:</th>
+        <th> <?= htmlspecialchars($boleta['cliente'] ?? '--') ?></th>
     </tr>
     <tr>
         <td colspan="4">
@@ -75,5 +78,5 @@
 </table>
 <br>
 <div>
-    <a href="?controller=boleta&action=index">← Volver al listado</a>   
+    <a href="?controller=boleta&action=index">← Volver al listado</a>
 </div>

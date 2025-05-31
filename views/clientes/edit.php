@@ -2,7 +2,7 @@
 
 
 <?php if (!empty($mensaje)) : ?>
-        <p style="color:red;"><?= htmlspecialchars($mensaje) ?></p>
+        <p style="color:green;"><?= htmlspecialchars($mensaje) ?></p>
 <?php endif; ?>
 
 <?php if (!empty($error)): ?>

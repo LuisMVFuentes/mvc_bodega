@@ -15,14 +15,14 @@
 <?php endif; ?>
 
 <form method="POST" action="?controller=producto&action=create">
-    <label>Categoría:</label><br>
-    <select name="categoria">
+    <label>Categoría:</label> <select name="categoria">
+        <option selected disabled> -- </option>
         <?php foreach ($categorias as $cat): ?>
             <option value="<?= htmlspecialchars($cat['categoria']) ?>"> <?= htmlspecialchars($cat['categoria']) ?></option>
         <?php endforeach; ?>
-        <option value="nueva">Nueva Categoría</option>
     </select><br><br>
-    <!--     <input name="nuevo" type="text" value="<?= htmlspecialchars($categoria ?? '') ?>"><br><br> -->
+    <label for="nueva_categoria">O escribe una nueva categoría:</label>
+    <input type="text" name="nueva_categoria" id="nueva_categoria" placeholder="Ej: Lácteos"><br><br>
     <label>Descripción:</label><br>
     <textarea name="descripcion" required><?= htmlspecialchars($descripcion ?? '') ?></textarea><br><br>
 

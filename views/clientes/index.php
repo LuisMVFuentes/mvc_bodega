@@ -12,9 +12,11 @@
         <th>Direccion</th>
         <th>Accion</th>
     </tr>
-    <?php foreach ($clientes as $cli): ?>
+    <?php
+    $c=1; 
+    foreach ($clientes as $cli): ?>
         <tr>
-            <td><?= htmlspecialchars($cli['id']) ?></td>
+            <td><?= htmlspecialchars($c++) ?></td>
             <td><?= htmlspecialchars($cli['nombre']) ?></td>
             <td><?= htmlspecialchars($cli['telefono']) ?></td>
             <td><?= htmlspecialchars($cli['direccion']) ?></td>

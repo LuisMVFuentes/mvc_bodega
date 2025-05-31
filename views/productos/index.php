@@ -8,7 +8,7 @@
 <br>
 <table border='1' cellpadding='5' cellspacing='0'>
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Categoría</th>
         <th>Descripción</th>
         <th>Precio</th>
@@ -16,9 +16,11 @@
         <th>Accion</th>
     </tr>
     <?php
-    foreach ($productos as $prod): ?>
+    $c = 0;
+    foreach ($productos as $prod): 
+    $c++;?>
         <tr>
-            <td><?= htmlspecialchars($prod['id']) ?></td>
+            <td><?= htmlspecialchars($c) ?></td>
             <td><?= htmlspecialchars($prod['categoria']) ?></td>
             <td><?= htmlspecialchars($prod['descripcion']) ?></td>
             <td><?= htmlspecialchars($prod['precio']) ?></td>

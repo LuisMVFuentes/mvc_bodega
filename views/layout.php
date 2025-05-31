@@ -49,7 +49,7 @@
             <a href="?controller=ingreso&action=index">Ingresos</a>
             <a href="?controller=boleta&action=index">Boletas</a>
             <a href="?controller=cliente&action=index">Clientes</a>
-            <a href="?controller=registro&action=index">Registros</a>
+            <a href="?controller=logs&action=index">Registros</a>
         </nav>
     </header>
 

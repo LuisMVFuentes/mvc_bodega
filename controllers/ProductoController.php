@@ -29,14 +29,24 @@ class ProductoController
         $categorias = $this->producto->getCategorias();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->producto->categoria = $_POST['categoria'];
-            $this->producto->descripcion = $_POST['descripcion'];
-            $this->producto->precio = $_POST['precio'];
-            $this->producto->cantidad_existente = $_POST['cantidad_existente'];
-            if ($this->producto->create()) {
-                $mensaje = "Producto creado correctamente.";
+            $categoriaExistente = trim($_POST['categoria'] ?? '');
+            $nuevaCategoria     = trim($_POST['nueva_categoria'] ?? '');
+
+            // Usar nueva categoría si está presente, si no, usar la seleccionada
+            $categoria = !empty($nuevaCategoria) ? $nuevaCategoria : $categoriaExistente;
+
+            if (empty($categoria)) {
+                $error = "Debes seleccionar o ingresar una categoría.";
             } else {
-                $error = "Error al crear producto.";
+                $this->producto->categoria = $categoria;
+                $this->producto->descripcion = $_POST['descripcion'];
+                $this->producto->precio = $_POST['precio'];
+                $this->producto->cantidad_existente = $_POST['cantidad_existente'];
+                if ($this->producto->create()) {
+                    $mensaje = "Producto creado correctamente.";
+                } else {
+                    $error = "Error al crear producto.";
+                }
             }
         }
         ob_start();
