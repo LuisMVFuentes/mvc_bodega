@@ -1,0 +1,59 @@
+# Sistema de Boletas en PHP (MVC + MySQL)
+
+Este es un sistema web básico para la gestión de boletas de venta. Está desarrollado en PHP usando el patrón de arquitectura MVC (Modelo-Vista-Controlador) y una base de datos MySQL.
+
+## 📌 Funcionalidades principales
+
+- Gestión de productos (CRUD)
+- Gestión de clientes (CRUD)
+- Registro de ingresos de productos
+- Registro y visualización de boletas
+- Detalle de productos por boleta
+- Cálculo automático de importes y totales
+- Asignación de cliente (opcional) y tipo de pago
+
+## 🚀 Tecnologías usadas
+
+- PHP 7.x o 8.x
+- MySQL
+- HTML + CSS + JavaScript (JS Vanilla)
+- Patrón de diseño MVC
+
+## 🛠 Requisitos
+
+- Servidor web (Apache recomendado)
+- PHP ≥ 7.4
+- MySQL ≥ 5.7
+- Composer (opcional)
+
+## 🧩 Estructura del proyecto
+
+/models # Lógica de base de datos
+/controllers # Lógica de negocio y manejo de solicitudes
+/views # Interfaces HTML
+/config # Configuración de base de datos
+/public # Archivos accesibles públicamente
+
+## ⚙️ Instalación
+
+1. Clona este repositorio:
+
+   ```bash
+   git clone https://github.com/LuisMVFuentes/mvc_bodega.git
+   cd mvc_bodega
+
+2. Importa la base de datos (install.sql) desde el archivo incluido.
+
+3 Configura tu conexión en el archivo:
+    config/database.php
+
+4. Coloca el proyecto en tu servidor local (ej. htdocs si usas XAMPP).
+
+5. Accede en tu navegador:
+    http://localhost/boletas-mvc/public/
+
+🧪 Acceso de prueba
+Puedes crear productos y clientes desde el sistema antes de registrar una boleta.
+
+✍️ Autor
+LuisMVFuentes
